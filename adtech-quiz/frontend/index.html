@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz-App-Shaheena</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz App</h1>
+
+    <div id="username-input">
+      <input type="text" id="username" placeholder="Enter your name" maxlength="20">
+      <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <div id="game" style="display: none;">
+      <p>
+        Score: <span id="current-score">0</span> |
+        Last Latency: <span id="last-latency">N/A</span>ms
+      </p>
+
+      <div id="question-area">
+        <p id="question-text"></p>
+        <div id="options"></div>
+        <div id="message"></div>
+        <button id="submit-btn" onclick="submitAnswer()">Submit</button>
+      </div>
+
+      <div id="leaderboard-area">
+        <h2>Leaderboard</h2>
+        <ul id="leaderboard-list"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

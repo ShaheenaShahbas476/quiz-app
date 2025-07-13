@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Bid-Response Blitz Backend - Lambda + API Gateway
+
+Parameters:
+  QuestionsTableName:
+    Type: String
+    Default: adtech_questions
+  LeaderboardTableName:
+    Type: String
+    Default: leaderboard
+
+Resources:
+
+  BidResponseBlitzFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: BidResponseBlitzHandler
+      Handler: app.lambda_handler
+      Runtime: python3.12
+      CodeUri: ./
+      MemorySize: 128
+      Timeout: 10
+      Environment:
+        Variables:
+          QUESTIONS_TABLE_NAME: !Ref QuestionsTableName
+          LEADERBOARD_TABLE_NAME: !Ref LeaderboardTableName
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+                - dynamodb:Scan
+              Resource: !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${QuestionsTableName}
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+                - dynamodb:Scan
+              Resource: !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${LeaderboardTableName}
+      Events:
+        GetQuestion:
+          Type: Api
+          Properties:
+            Path: /question
+            Method: GET
+            RestApiId: !Ref QuizApi
+        PostBidResponse:
+          Type: Api
+          Properties:
+            Path: /bid-response
+            Method: POST
+            RestApiId: !Ref QuizApi
+
+  QuizApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: BidResponseBlitzAPI
+      StageName: Prod
+      Cors:
+        AllowMethods: "'GET,POST,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'*'"
+
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint URL"
+    Value: !Sub "https://${QuizApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
