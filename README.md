@@ -1,7 +1,7 @@
 # quiz-app
 ## 1. Frontend Application
 
-**Technology Stack:** HTML, CSS, JavaScript (Vanilla)
+**Technology Stack:** HTML, CSS, JavaScript
 
 **Features:** User onboarding, question rendering, timer management, option selection, answer submission, score display, and leaderboard rendering
 
