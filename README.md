@@ -21,7 +21,7 @@ GET /question: Serves the next available question in order
 
 POST /bid-response: Accepts and evaluates user responses
 
-**Deployment Toolchain:** AWS Serverless Application Model (SAM CLI)
+**Deployment:** AWS Serverless Application Model (SAM CLI)
 
 **Security:** CORS headers for cross-origin browser access
 
