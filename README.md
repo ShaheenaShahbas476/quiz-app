@@ -23,7 +23,7 @@ POST /bid-response: Accepts and evaluates user responses
 
 **Deployment Toolchain:** AWS Serverless Application Model (SAM CLI)
 
-**Security:** CORS headers for cross-origin browser access; no authentication in initial release
+**Security:** CORS headers for cross-origin browser access
 
 ## 3. Data Persistence
 
