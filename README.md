@@ -1,5 +1,5 @@
 # quiz-app
-Quiz App is a fully interactive, browser-based quiz application focused on real-time knowledge evaluation in the field of Advertising Technology (AdTech).
+Quiz App is an interactive, browser-based quiz application focused on real-time knowledge evaluation in the field of Advertising Technology (AdTech).
 
 ## 1. Frontend Application
 
