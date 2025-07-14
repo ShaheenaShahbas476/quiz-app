@@ -8,7 +8,7 @@ let currentScore = 0;
 let lastLatency = 'N/A';
 let username = '';
 let timer;
-let timeLeft = 10;
+let timeLeft ;
 
 function startGame() {
   username = document.getElementById('username').value.trim();
